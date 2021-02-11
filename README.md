@@ -13,22 +13,27 @@
  - Fadi Alrabadi
  - Ryan Conaway
 
+<<<<<<< HEAD
 ## A description of the intended project:
  - An application that generates mazes and solves them; a visualization of pathfinding algorithms.
-
-## A description of the target technology platform:
-	
-## Instructions to compile, deploy, and run the app:
 
 <<<<<<< HEAD
 ## Link to the github repo:
 =======
 <<<<<<< HEAD
 Github Repo: https://github.com/OnlyOnTuesday/PathfindingVisualisation
-
 =======
-Link to the github rep
->>>>>>> 14e97ac8af50aa4988fd41d199fc8c7be3ac67f5
+## A description of the intended project
+	An application that generates mazes and solves them; a visualization of pathfinding algorithms.
+
+## A description of the target technology platform
+	
+## Instructions to compile, deploy, and run the app
+
+## Github Repo: 
+    - https://github.com/OnlyOnTuesday/PathfindingVisualisation
+>>>>>>> f645b128da143fb9e9477e3d3e41bd09be7a007c
+
 
 
 >>>>>>> ecdb83b45bdad9bbaf063e88ba5ea5234586ba95
