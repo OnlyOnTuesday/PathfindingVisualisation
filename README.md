@@ -14,4 +14,6 @@ A description of the target technology platform
 
 Instructions to compile, deploy, and run the app
 
-Link to the github rep
+Github Repo: https://github.com/OnlyOnTuesday/PathfindingVisualisation
+
+
