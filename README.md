@@ -13,8 +13,9 @@
  - Fadi Alrabadi
  - Ryan Conaway
 
-A description of the intended project
+## A description of the intended project
 	An application that generates mazes and solves them; a visualization of pathfinding algorithms.
+    
 A description of the target technology platform
 	
 Instructions to compile, deploy, and run the app
