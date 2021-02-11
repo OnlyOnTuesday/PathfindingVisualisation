@@ -20,5 +20,16 @@
 	
 ## Instructions to compile, deploy, and run the app:
 
+<<<<<<< HEAD
 ## Link to the github repo:
+=======
+<<<<<<< HEAD
+Github Repo: https://github.com/OnlyOnTuesday/PathfindingVisualisation
+
+=======
+Link to the github rep
+>>>>>>> 14e97ac8af50aa4988fd41d199fc8c7be3ac67f5
+
+
+>>>>>>> ecdb83b45bdad9bbaf063e88ba5ea5234586ba95
 
