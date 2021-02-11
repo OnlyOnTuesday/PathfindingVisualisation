@@ -1,1 +1,6 @@
 # PathfindingVisualisation
+
+
+
+Contributors:
+Ryan Conaway 
