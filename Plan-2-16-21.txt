@@ -1,0 +1,11 @@
+Work on Unity basics until Saturday (2/20/21) and try to get a HelloWorld working in unity. 
+If we can't get it to work by then, just do it in terminal. 
+
+Helpful Links:
+
+Path Finder: https://emmilco.github.io/path_finder/
+General Unity:
+https://stackoverflow.com/questions/49793560/build-c-plugin-for-unity
+https://www.youtube.com/watch?v=EycOwb6sVpw
+C++ In Unity:
+https://levelup.gitconnected.com/integrating-native-c-c-libraries-with-unity-as-plugins-a-step-by-step-guide-17ad70c2e3b4?gi=fe2f0bd020ba
