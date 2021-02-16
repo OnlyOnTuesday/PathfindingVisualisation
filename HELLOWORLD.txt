@@ -1,0 +1,4 @@
+
+
+So create a block-text "HELLO WORLD" in either a GUI or the terminal 
+(depending on what we decide to use)
