@@ -27,6 +27,10 @@ class Block {
   //Check to see if next space is a wall or not
   std::bool isWall(int x, int y);
  private:
+  char type = 'w'; //should be 'w' (wall) or 'p' (path)
+                   //can add more options if we want later (e.g. what if the next path isn't
+                   //set in stone?)
+  int size = 0;
 
 }
 
