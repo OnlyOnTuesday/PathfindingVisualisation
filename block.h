@@ -1,5 +1,5 @@
-#ifndef MAZE_H
-#define MAZE_H
+#ifndef BLOCK_H
+#define BLOCK_H
 #include colors.h
 
 /*
