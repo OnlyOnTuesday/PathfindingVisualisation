@@ -1,7 +1,8 @@
 #ifndef MAZE_H
 #define MAZE_H
-#include colors.h
-
+#include "colors.h"
+#include <string>
+#include <fstream>
 /*
  * different colors
  * each block should be a square that is 1 space
@@ -15,6 +16,7 @@ class Block {
   Block(){
   }
   std::void placeBlock(int x, int y);
+  void loadMaze();
 
   //getters
   std::char getType();
@@ -29,5 +31,16 @@ class Block {
  private:
 
 }
+void loadMaze(){
+
+    ifstream inp;
+    inp.open("HelloWorldOutput.txt");
+    std::string text;
+    while(inp.good()){
+        std::getline(inp, text);
+        std::cout << text << std::endl;
+    }
+}
+
 
 #endif
