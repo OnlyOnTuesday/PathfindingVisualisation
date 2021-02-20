@@ -24,6 +24,9 @@ class Block {
   std::void setType(char type);
   std::void setSize(int size);
 
+  //Check ot see if next space is a wall or not
+  std::bool isWall(int x, int y);
+
  private:
 
 }
