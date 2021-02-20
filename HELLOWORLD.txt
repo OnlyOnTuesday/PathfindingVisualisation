@@ -1,4 +1,2 @@
-
-
-So create a block-text "HELLO WORLD" in either a GUI or the terminal 
-(depending on what we decide to use)
+Create a Maze in the form of "Hello World" in Unity. Will use C++ to create the path 
+finding algorithms.  

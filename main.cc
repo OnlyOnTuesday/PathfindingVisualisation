@@ -1,9 +1,10 @@
 #include <iostream>
+#include <maze.h>
 
 int main()
 {
-    std::cout << "HELLO WORLD" << std::endl;
-
+    maze helloworld;
+    
 
     return 0;
 }
