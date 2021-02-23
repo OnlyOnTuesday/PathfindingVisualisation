@@ -1,9 +1,19 @@
 #include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
 
 int main()
 {
-    std::cout << "HELLO WORLD" << std::endl;
 
-
+    ifstream inp;
+    inp.open("HelloWorldOutput.txt");
+    string text;
+    while(inp.good()){
+        getline(inp, text);
+        cout << text << endl;
+    }
     return 0;
 }
+    
