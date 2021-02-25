@@ -3,7 +3,8 @@
 
 int main()
 {
-    std::cout << "HELLO WORLD" << std::endl;
+    Block helloworld;
+
 
 
     return 0;
