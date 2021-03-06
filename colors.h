@@ -23,13 +23,6 @@
 //  just wanted to use to make everything look nice
 //
 //***********************************************************
-<<<<<<< HEAD
-=======
-//  Note: the setting is permanent.  Make sure to reset when
-//  you're done with it.
-//***********************************************************
-
->>>>>>> 848710dee0c9c068ccb8a63c8e0a92e05b26d2cb
 
 #ifndef COLORS_H
 #define COLORS_H
