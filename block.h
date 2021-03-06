@@ -1,8 +1,9 @@
-#ifndef MAZE_H
-#define MAZE_H
-#include "colors.h"
+#ifndef BLOCK_H
+#define BLOCK_H
+#include colors.h
 #include <string>
 #include <fstream>
+
 /*
  * different colors
  * each block should be a square that is 1 space
@@ -29,6 +30,10 @@ class Block {
   //Check to see if next space is a wall or not
   std::bool isWall(int x, int y);
  private:
+  char type = 'w'; //should be 'w' (wall) or 'p' (path)
+                   //can add more options if we want later (e.g. what if the next path isn't
+                   //set in stone?)
+  int size = 0;
 
 }
 void loadMaze(){
