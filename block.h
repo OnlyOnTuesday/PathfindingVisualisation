@@ -33,7 +33,7 @@ class Block {
    * @param char 'w' (wall) or 'p' (path)
    * @return void
    */
-  std::void setType(char type);
+  std::void setType(char c);
 
   //Check to see if next space is a wall or not
   std::bool isWall(int x, int y);
