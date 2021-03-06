@@ -20,12 +20,20 @@ class Block {
   void loadMaze();
 
   //getters
+  
+  /**
+   * @fn getType
+   * @return a char that is either 'w' (wall) or 'p' (path)
+   */
   std::char getType();
-  std::int getSize();
 
   //setters
+  /**
+   * @fn setType
+   * @param char 'w' (wall) or 'p' (path)
+   * @return void
+   */
   std::void setType(char type);
-  std::void setSize(int size);
 
   //Check to see if next space is a wall or not
   std::bool isWall(int x, int y);
@@ -36,6 +44,8 @@ class Block {
   int size = 0;
 
 }
+
+//currently being used to output our hello world
 void loadMaze(){
 
     ifstream inp;
