@@ -3,8 +3,7 @@
 #include "maze.h"
 int main()
 {
-    Block test;
-
+    maze test();
 
     return 0;
 }

@@ -16,7 +16,7 @@ class maze
     int getDimensionX();
     int getDimensionY();
     //Mutator
-    void setMazeDimensions();
+    void setMazeDimensions(int x, int y);
 
     protected:
     int dimensionX;

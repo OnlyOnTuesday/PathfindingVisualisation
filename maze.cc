@@ -1,7 +1,7 @@
 #include "maze.h"
 #include <iostream>
 
-maze::maze(int x = 10, int y = 10)
+maze::maze(int x , int y )
 {
     std::cout << "Intilizing maze: " << std::endl;
     setMazeDimensions(x, y);
