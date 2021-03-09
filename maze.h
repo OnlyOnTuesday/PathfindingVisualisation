@@ -1,10 +1,11 @@
 #ifndef MAZE_H
 #define MAZE_H
 
+#include "block.h"
 class maze
 {
     public:
-    maze(); //constructor
+    maze(int x = 10, int y = 10); //constructor
     void restart();
     void callMazeGeneratingAlgorithm();
 
@@ -18,9 +19,9 @@ class maze
     void setMazeDimensions();
 
     protected:
-    block maze[dimensionX][dimensionX];
-    int dimensionX = 10;
-    int dimensionY = 10;
+    int dimensionX;
+    int dimensionY;
+    Block *mazeArray;
 
 };
 #endif
