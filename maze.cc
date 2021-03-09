@@ -1,8 +1,11 @@
 #include "maze.h"
+#include <iostream>
 
-
-maze::maze()
+maze::maze(int x = 10, int y = 10)
 {
+    std::cout << "Intilizing maze: " << std::endl;
+    setMazeDimensions(x, y);
+    mazeArray = new Block[dimensionX][dimensionY];
     restart();
 }
 void maze::restart()
@@ -37,8 +40,8 @@ void maze::PrimAlgorithm()
             maze[x][y].setType('W'); // 'W' for wall
         }   
     }
-    int startCellX == std::rand() % getDimensionX(); // random cell between 0 - dimensionX
-    int startCellY == std::rand() % getDimensionY(); // random cell between 0 - dimensionY
-    
+    int startCellX = std::rand() % getDimensionX(); // random cell between 0 - dimensionX
+    int startCellY = std::rand() % getDimensionY(); // random cell between 0 - dimensionY
+    std::cout << startCellX << " " << startCellY << std::endl;
 
 }

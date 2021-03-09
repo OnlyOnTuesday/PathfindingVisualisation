@@ -7,7 +7,7 @@ using namespace std;
 
 
 
-void block::setType(char c) 
+void Block::setType(char c) 
 {
 	type = c;
 }
