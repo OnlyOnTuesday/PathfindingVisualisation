@@ -2,10 +2,10 @@
 #define MAZE_H
 
 #include "block.h"
-class maze
+class Maze
 {
     public:
-    maze(int x = 10, int y = 10); //constructor
+    Maze(int x = 10, int y = 10); //constructor
     void restart();
     void callMazeGeneratingAlgorithm();
 
@@ -18,10 +18,10 @@ class maze
     //Mutator
     void setMazeDimensions(int x, int y);
 
-    protected:
+    private:
     int dimensionX;
     int dimensionY;
-    Block *mazeArray;
+    Block **maze;
 
 };
 #endif

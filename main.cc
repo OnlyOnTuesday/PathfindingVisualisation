@@ -3,8 +3,9 @@
 #include "maze.h"
 int main()
 {
-    maze test();
-
+    std::cout << "\nSTART\n";
+    Maze test;
+    std::cout << "\nEND\n";
     return 0;
 }
     

@@ -1,38 +1,42 @@
 #include "maze.h"
 #include <iostream>
-
-maze::maze(int x , int y )
+#include <ctime>
+Maze::Maze(int x , int y )
 {
     std::cout << "Intilizing maze: " << std::endl;
     setMazeDimensions(x, y);
-    mazeArray = new Block[dimensionX][dimensionY];
+    // mazeArray = new Block[dimensionX][dimensionY];
+    maze = new Block*[dimensionX];
+    for(int i = 0; i < dimensionX; ++i){
+        maze[i] = new Block[dimensionY];
+    }
     restart();
 }
-void maze::restart()
+void Maze::restart()
 {
     callMazeGeneratingAlgorithm();
 }
-void maze::callMazeGeneratingAlgorithm()
+void Maze::callMazeGeneratingAlgorithm()
 {
     //whatever maze generaitng algorithm we want
     PrimAlgorithm();
 }
 
-void maze::setMazeDimensions(int x, int y)
+void Maze::setMazeDimensions(int x, int y)
 {
     dimensionX = x;
     dimensionY = y;
 }
 
-int maze::getDimensionX() {
+int Maze::getDimensionX() {
     return dimensionX;
 }
 
-int maze::getDimensionY() {
+int Maze::getDimensionY() {
     return dimensionY;
 }
 
-void maze::PrimAlgorithm()
+void Maze::PrimAlgorithm()
 {
     //For Prim's Alg, the maze starts out as all walls
     for (int x = 0; x < 10; ++x) {
@@ -40,6 +44,7 @@ void maze::PrimAlgorithm()
             maze[x][y].setType('W'); // 'W' for wall
         }   
     }
+    std::srand(std::time(NULL)); //use time to randomly seed random # generator
     int startCellX = std::rand() % getDimensionX(); // random cell between 0 - dimensionX
     int startCellY = std::rand() % getDimensionY(); // random cell between 0 - dimensionY
     std::cout << startCellX << " " << startCellY << std::endl;
