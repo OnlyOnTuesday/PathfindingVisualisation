@@ -1,15 +1,21 @@
 #include "maze.h"
 
+using namespace std;
 
-maze::maze()
+Maze::maze()
 {
     restart();
 }
-void maze::restart()
+void Maze::restart()
 {
     callMazeGeneratingAlgorithm();
 }
-void maze::callMazeGeneratingAlgorithm()
+void Maze::callMazeGeneratingAlgorithm()
 {
     //whatever maze generaitng algorithm we want
 }
+
+void Maze::placeBlock(int x, int y){
+    //how to place block on board
+}
+
