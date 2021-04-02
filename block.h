@@ -11,52 +11,38 @@
  * Needs to: placeBlock, 
  */
 
-class Block
-{
+class Block {
 public:
-    Block()
-    {
+
+    Block() {
     }
+    void placeBlock(int x, int y);
+    void loadMaze();
 
     //getters
+
     /**
-    * @fn getType
-    * @return a char that is either 'w' (wall) or 'p' (path)
-    */
-    std::char getType();
+     * @fn getType
+     * @return a char that is either 'w' (wall) or 'p' (path)
+     */
+    char getType();
 
     //setters
     /**
-    * @fn setType
-    * @param char 'w' (wall) or 'p' (path)
-    * @return void
-    */
-    std::void setType(char type);
+     * @fn setType
+     * @param char 'w' (wall) or 'p' (path)
+     * @return void
+     */
+    void setType(char c);
 
     //Check to see if next space is a wall or not
-    std::bool isWall(int x, int y);
-
+    bool isWall(int x, int y);
 private:
     char type = 'w'; //should be 'w' (wall) or 'p' (path)
                      //can add more options if we want later (e.g. what if the next path isn't
                      //set in stone?)
     int size = 0;
 
-}
-
-//currently being used to output our hello world
-void
-loadMaze()
-{
-
-    ifstream inp;
-    inp.open("HelloWorldOutput.txt");
-    std::string text;
-    while (inp.good())
-    {
-        std::getline(inp, text);
-        std::cout << text << std::endl;
-    }
-}
+};
 
 #endif

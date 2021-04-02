@@ -2,27 +2,26 @@
 #define MAZE_H
 
 #include "block.h"
-
 class Maze
 {
     public:
-    Maze(); //constructor
-    std::void restart();
-    std::void callMazeGeneratingAlgorithm();
+    Maze(int x = 10, int y = 10); //constructor
+    void restart();
+    void callMazeGeneratingAlgorithm();
 
-    /**
-    * Should be in the maze class
-    * @fn placeBlock
-    * @param int x, x coordinate on grid
-    * @param int y, y coordinate on grid
-    * @return void
-    */
-    std::void placeBlock(int x, int y);
-  
-    std::void loadMaze(); 
+    //MazeGenerating Algorithm
+    void PrimAlgorithm();
 
-    protected:
-    int maze[10][10];
+    //Accessor
+    int getDimensionX();
+    int getDimensionY();
+    //Mutator
+    void setMazeDimensions(int x, int y);
+
+    private:
+    int dimensionX;
+    int dimensionY;
+    Block **maze;
 
 };
 #endif

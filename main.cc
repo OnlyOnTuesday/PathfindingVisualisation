@@ -1,17 +1,11 @@
 #include <iostream>
 #include "block.h"
-
+#include "maze.h"
 int main()
 {
-    Block helloworld;
-
-    ifstream inp;
-    inp.open("HelloWorldOutput.txt");
-    string text;
-    while(inp.good()){
-        getline(inp, text);
-        cout << text << endl;
-    }
+    std::cout << "\nSTART\n";
+    Maze test;
+    std::cout << "\nEND\n";
     return 0;
 }
     
