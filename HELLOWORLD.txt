@@ -1,2 +1,0 @@
-Create a Maze in the form of "Hello World" in Unity. Will use C++ to create the path 
-finding algorithms.  

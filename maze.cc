@@ -8,7 +8,7 @@ using namespace std;
 Maze::Maze(int x , int y )
 
 {
-    std::cout << "Intilizing maze: " << std::endl;
+    std::cout << "Initializing maze: " << std::endl;
     setMazeDimensions(x, y);
     // mazeArray = new Block[dimensionX][dimensionY];
     maze = new Block*[dimensionX];
@@ -56,7 +56,7 @@ void Maze::PrimAlgorithm()
 
 }
 
-void Maze::placeBlock(int x, int y){
-    //how to place block on board
-}
+// void Maze::placeBlock(int x, int y){
+//     //how to place block on board
+// }
 
