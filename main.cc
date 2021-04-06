@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cassert>
 
 
 //recursive function actually solves it
@@ -13,17 +14,31 @@ bool solveIt(int maze[4][4]);
 
 int main()
 {
-    int maze[4][4] = { { 1, 1, 1, 1},
+    int a_maze[4][4] = { { 1, 1, 1, 1},
                        { 1, 1, 0, 1},
                        { 0, 1, 0, 0},
                        { 1, 1, 1, 1} };
     for(int i = 0; i < 4; i++){
         for(int j = 0; j < 4; j++)
-            std::cout << maze[i][j] << " ";
+            std::cout << a_maze[i][j] << " ";
         std::cout << std::endl;
     }
-    std::cout << std::endl;
-    solveIt(maze);
+	std::cout << std::endl;
+    assert(solveIt(a_maze)==true);
+
+	std::cout << std::endl;
+	
+	int b_maze[4][4] = { { 1, 1, 1, 1},
+                       { 1, 1, 0, 1},
+                       { 0, 1, 0, 0},
+                       { 1, 1, 0, 1} };
+	for(int i = 0; i < 4; i++){
+        for(int j = 0; j < 4; j++)
+            std::cout << b_maze[i][j] << " ";
+        std::cout << std::endl;
+    }				   
+	std::cout << std::endl;
+	assert(solveIt(b_maze)==true);
 };
 
 bool solveIt(int maze[4][4]){
