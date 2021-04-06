@@ -7,6 +7,7 @@ state::state() {
 	CELL_PATH_S = false;
 	CELL_PATH_W = false;
 	CELL_VISITED = false;
+	CELL_SOLVED = false;
 }
 
 void state::visit()
@@ -63,4 +64,19 @@ bool state::get_Path_W()
 bool state::get_visit()
 {
 	return CELL_VISITED;
+}
+
+
+
+
+
+// solving
+void state::set_Solved()
+{
+	CELL_SOLVED = true;
+}
+
+bool state::get_Solved()
+{
+	return CELL_SOLVED;
 }
