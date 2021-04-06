@@ -1,3 +1,5 @@
+#pragma once
+
 /*
 OneLoneCoder.com - Command Line Game Engine
 "Who needs a frame buffer?" - @Javidx9
@@ -48,7 +50,7 @@ Cheers!
 Background
 ~~~~~~~~~~
 If you've seen any of my videos - I like to do things using the windows console. It's quick
-and easy, and allows you to focus on just the code that matters - ideal when you're 
+and easy, and allows you to focus on just the code that matters - ideal when you're
 experimenting. Thing is, I have to keep doing the same initialisation and display code
 each time, so this class wraps that up.
 
@@ -104,7 +106,7 @@ the current cursor position, and m_mouse[1..5] returns the mouse buttons.
 The draw routines treat characters like pixels. By default they are set to white solid
 blocks - but you can draw any unicode character, using any of the colours listed below.
 
-There may be bugs! 
+There may be bugs!
 
 See my other videos for examples!
 http://www.youtube.com/javidx9
@@ -140,38 +142,38 @@ Character Set -> Use Unicode. Thanks! - Javidx9
 
 enum COLOUR
 {
-	FG_BLACK		= 0x0000,
-	FG_DARK_BLUE    = 0x0001,	
-	FG_DARK_GREEN   = 0x0002,
-	FG_DARK_CYAN    = 0x0003,
-	FG_DARK_RED     = 0x0004,
+	FG_BLACK = 0x0000,
+	FG_DARK_BLUE = 0x0001,
+	FG_DARK_GREEN = 0x0002,
+	FG_DARK_CYAN = 0x0003,
+	FG_DARK_RED = 0x0004,
 	FG_DARK_MAGENTA = 0x0005,
-	FG_DARK_YELLOW  = 0x0006,
-	FG_GREY			= 0x0007, // Thanks MS :-/
-	FG_DARK_GREY    = 0x0008,
-	FG_BLUE			= 0x0009,
-	FG_GREEN		= 0x000A,
-	FG_CYAN			= 0x000B,
-	FG_RED			= 0x000C,
-	FG_MAGENTA		= 0x000D,
-	FG_YELLOW		= 0x000E,
-	FG_WHITE		= 0x000F,
-	BG_BLACK		= 0x0000,
-	BG_DARK_BLUE	= 0x0010,
-	BG_DARK_GREEN	= 0x0020,
-	BG_DARK_CYAN	= 0x0030,
-	BG_DARK_RED		= 0x0040,
+	FG_DARK_YELLOW = 0x0006,
+	FG_GREY = 0x0007, // Thanks MS :-/
+	FG_DARK_GREY = 0x0008,
+	FG_BLUE = 0x0009,
+	FG_GREEN = 0x000A,
+	FG_CYAN = 0x000B,
+	FG_RED = 0x000C,
+	FG_MAGENTA = 0x000D,
+	FG_YELLOW = 0x000E,
+	FG_WHITE = 0x000F,
+	BG_BLACK = 0x0000,
+	BG_DARK_BLUE = 0x0010,
+	BG_DARK_GREEN = 0x0020,
+	BG_DARK_CYAN = 0x0030,
+	BG_DARK_RED = 0x0040,
 	BG_DARK_MAGENTA = 0x0050,
-	BG_DARK_YELLOW	= 0x0060,
-	BG_GREY			= 0x0070,
-	BG_DARK_GREY	= 0x0080,
-	BG_BLUE			= 0x0090,
-	BG_GREEN		= 0x00A0,
-	BG_CYAN			= 0x00B0,
-	BG_RED			= 0x00C0,
-	BG_MAGENTA		= 0x00D0,
-	BG_YELLOW		= 0x00E0,
-	BG_WHITE		= 0x00F0,
+	BG_DARK_YELLOW = 0x0060,
+	BG_GREY = 0x0070,
+	BG_DARK_GREY = 0x0080,
+	BG_BLUE = 0x0090,
+	BG_GREEN = 0x00A0,
+	BG_CYAN = 0x00B0,
+	BG_RED = 0x00C0,
+	BG_MAGENTA = 0x00D0,
+	BG_YELLOW = 0x00E0,
+	BG_WHITE = 0x00F0,
 };
 
 enum PIXEL_TYPE
@@ -205,16 +207,16 @@ public:
 	int nHeight = 0;
 
 private:
-	short *m_Glyphs = nullptr;
-	short *m_Colours = nullptr;
+	short* m_Glyphs = nullptr;
+	short* m_Colours = nullptr;
 
 	void Create(int w, int h)
 	{
 		nWidth = w;
 		nHeight = h;
-		m_Glyphs = new short[w*h];
-		m_Colours = new short[w*h];
-		for (int i = 0; i < w*h; i++)
+		m_Glyphs = new short[w * h];
+		m_Colours = new short[w * h];
+		for (int i = 0; i < w * h; i++)
 		{
 			m_Glyphs[i] = L' ';
 			m_Colours[i] = FG_BLACK;
@@ -224,7 +226,7 @@ private:
 public:
 	void SetGlyph(int x, int y, short c)
 	{
-		if (x <0 || x >= nWidth || y < 0 || y >= nHeight)
+		if (x < 0 || x >= nWidth || y < 0 || y >= nHeight)
 			return;
 		else
 			m_Glyphs[y * nWidth + x] = c;
@@ -232,7 +234,7 @@ public:
 
 	void SetColour(int x, int y, short c)
 	{
-		if (x <0 || x >= nWidth || y < 0 || y >= nHeight)
+		if (x < 0 || x >= nWidth || y < 0 || y >= nHeight)
 			return;
 		else
 			m_Colours[y * nWidth + x] = c;
@@ -240,7 +242,7 @@ public:
 
 	short GetGlyph(int x, int y)
 	{
-		if (x <0 || x >= nWidth || y < 0 || y >= nHeight)
+		if (x < 0 || x >= nWidth || y < 0 || y >= nHeight)
 			return L' ';
 		else
 			return m_Glyphs[y * nWidth + x];
@@ -248,7 +250,7 @@ public:
 
 	short GetColour(int x, int y)
 	{
-		if (x <0 || x >= nWidth || y < 0 || y >= nHeight)
+		if (x < 0 || x >= nWidth || y < 0 || y >= nHeight)
 			return FG_BLACK;
 		else
 			return m_Colours[y * nWidth + x];
@@ -257,8 +259,8 @@ public:
 	short SampleGlyph(float x, float y)
 	{
 		int sx = (int)(x * (float)nWidth);
-		int sy = (int)(y * (float)nHeight-1.0f);
-		if (sx <0 || sx >= nWidth || sy < 0 || sy >= nHeight)
+		int sy = (int)(y * (float)nHeight - 1.0f);
+		if (sx < 0 || sx >= nWidth || sy < 0 || sy >= nHeight)
 			return L' ';
 		else
 			return m_Glyphs[sy * nWidth + sx];
@@ -267,8 +269,8 @@ public:
 	short SampleColour(float x, float y)
 	{
 		int sx = (int)(x * (float)nWidth);
-		int sy = (int)(y * (float)nHeight-1.0f);
-		if (sx <0 || sx >= nWidth || sy < 0 || sy >= nHeight)
+		int sy = (int)(y * (float)nHeight - 1.0f);
+		if (sx < 0 || sx >= nWidth || sy < 0 || sy >= nHeight)
 			return FG_BLACK;
 		else
 			return m_Colours[sy * nWidth + sx];
@@ -276,7 +278,7 @@ public:
 
 	bool Save(std::wstring sFile)
 	{
-		FILE *f = nullptr;
+		FILE* f = nullptr;
 		_wfopen_s(&f, sFile.c_str(), L"wb");
 		if (f == nullptr)
 			return false;
@@ -298,7 +300,7 @@ public:
 		nWidth = 0;
 		nHeight = 0;
 
-		FILE *f = nullptr;
+		FILE* f = nullptr;
 		_wfopen_s(&f, sFile.c_str(), L"rb");
 		if (f == nullptr)
 			return false;
@@ -376,7 +378,7 @@ public:
 		// Assign screen buffer to the console
 		if (!SetConsoleActiveScreenBuffer(m_hConsole))
 			return Error(L"SetConsoleActiveScreenBuffer");
-		
+
 		// Set the font size now that the screen buffer has been assigned to the console
 		CONSOLE_FONT_INFOEX cfi;
 		cfi.cbSize = sizeof(cfi);
@@ -386,16 +388,16 @@ public:
 		cfi.FontFamily = FF_DONTCARE;
 		cfi.FontWeight = FW_NORMAL;
 
-	/*	DWORD version = GetVersion();
-		DWORD major = (DWORD)(LOBYTE(LOWORD(version)));
-		DWORD minor = (DWORD)(HIBYTE(LOWORD(version)));*/
+		/*	DWORD version = GetVersion();
+			DWORD major = (DWORD)(LOBYTE(LOWORD(version)));
+			DWORD minor = (DWORD)(HIBYTE(LOWORD(version)));*/
 
-		//if ((major > 6) || ((major == 6) && (minor >= 2) && (minor < 4)))		
-		//	wcscpy_s(cfi.FaceName, L"Raster"); // Windows 8 :(
-		//else
-		//	wcscpy_s(cfi.FaceName, L"Lucida Console"); // Everything else :P
+			//if ((major > 6) || ((major == 6) && (minor >= 2) && (minor < 4)))		
+			//	wcscpy_s(cfi.FaceName, L"Raster"); // Windows 8 :(
+			//else
+			//	wcscpy_s(cfi.FaceName, L"Lucida Console"); // Everything else :P
 
-		//wcscpy_s(cfi.FaceName, L"Liberation Mono");
+			//wcscpy_s(cfi.FaceName, L"Liberation Mono");
 		wcscpy_s(cfi.FaceName, L"Consolas");
 		if (!SetCurrentConsoleFontEx(m_hConsole, false, &cfi))
 			return Error(L"SetCurrentConsoleFontEx");
@@ -420,7 +422,7 @@ public:
 			return Error(L"SetConsoleMode");
 
 		// Allocate memory for screen buffer
-		m_bufScreen = new CHAR_INFO[m_nScreenWidth*m_nScreenHeight];
+		m_bufScreen = new CHAR_INFO[m_nScreenWidth * m_nScreenHeight];
 		memset(m_bufScreen, 0, sizeof(CHAR_INFO) * m_nScreenWidth * m_nScreenHeight);
 
 		SetConsoleCtrlHandler((PHANDLER_ROUTINE)CloseHandler, TRUE);
@@ -466,7 +468,7 @@ public:
 		}
 	}
 
-	void Clip(int &x, int &y)
+	void Clip(int& x, int& y)
 	{
 		if (x < 0) x = 0;
 		if (x >= m_nScreenWidth) x = m_nScreenWidth;
@@ -483,20 +485,24 @@ public:
 		if (dy1 <= dx1)
 		{
 			if (dx >= 0)
-				{ x = x1; y = y1; xe = x2; }
+			{
+				x = x1; y = y1; xe = x2;
+			}
 			else
-				{ x = x2; y = y2; xe = x1;}
+			{
+				x = x2; y = y2; xe = x1;
+			}
 
 			Draw(x, y, c, col);
-			
-			for (i = 0; x<xe; i++)
+
+			for (i = 0; x < xe; i++)
 			{
 				x = x + 1;
-				if (px<0)
+				if (px < 0)
 					px = px + 2 * dy1;
 				else
 				{
-					if ((dx<0 && dy<0) || (dx>0 && dy>0)) y = y + 1; else y = y - 1;
+					if ((dx < 0 && dy < 0) || (dx > 0 && dy > 0)) y = y + 1; else y = y - 1;
 					px = px + 2 * (dy1 - dx1);
 				}
 				Draw(x, y, c, col);
@@ -505,20 +511,24 @@ public:
 		else
 		{
 			if (dy >= 0)
-				{ x = x1; y = y1; ye = y2; }
+			{
+				x = x1; y = y1; ye = y2;
+			}
 			else
-				{ x = x2; y = y2; ye = y1; }
+			{
+				x = x2; y = y2; ye = y1;
+			}
 
 			Draw(x, y, c, col);
 
-			for (i = 0; y<ye; i++)
+			for (i = 0; y < ye; i++)
 			{
 				y = y + 1;
 				if (py <= 0)
 					py = py + 2 * dx1;
 				else
 				{
-					if ((dx<0 && dy<0) || (dx>0 && dy>0)) x = x + 1; else x = x - 1;
+					if ((dx < 0 && dy < 0) || (dx > 0 && dy > 0)) x = x + 1; else x = x - 1;
 					py = py + 2 * (dx1 - dy1);
 				}
 				Draw(x, y, c, col);
@@ -536,25 +546,25 @@ public:
 	// https://www.avrfreaks.net/sites/default/files/triangles.c
 	void FillTriangle(int x1, int y1, int x2, int y2, int x3, int y3, short c = 0x2588, short col = 0x000F)
 	{
-		auto SWAP = [](int &x, int &y) { int t = x; x = y; y = t; };
+		auto SWAP = [](int& x, int& y) { int t = x; x = y; y = t; };
 		auto drawline = [&](int sx, int ex, int ny) { for (int i = sx; i <= ex; i++) Draw(i, ny, c, col); };
-		
+
 		int t1x, t2x, y, minx, maxx, t1xp, t2xp;
 		bool changed1 = false;
 		bool changed2 = false;
 		int signx1, signx2, dx1, dy1, dx2, dy2;
 		int e1, e2;
 		// Sort vertices
-		if (y1>y2) { SWAP(y1, y2); SWAP(x1, x2); }
-		if (y1>y3) { SWAP(y1, y3); SWAP(x1, x3); }
-		if (y2>y3) { SWAP(y2, y3); SWAP(x2, x3); }
+		if (y1 > y2) { SWAP(y1, y2); SWAP(x1, x2); }
+		if (y1 > y3) { SWAP(y1, y3); SWAP(x1, x3); }
+		if (y2 > y3) { SWAP(y2, y3); SWAP(x2, x3); }
 
 		t1x = t2x = x1; y = y1;   // Starting points
-		dx1 = (int)(x2 - x1); if (dx1<0) { dx1 = -dx1; signx1 = -1; }
+		dx1 = (int)(x2 - x1); if (dx1 < 0) { dx1 = -dx1; signx1 = -1; }
 		else signx1 = 1;
 		dy1 = (int)(y2 - y1);
 
-		dx2 = (int)(x3 - x1); if (dx2<0) { dx2 = -dx2; signx2 = -1; }
+		dx2 = (int)(x3 - x1); if (dx2 < 0) { dx2 = -dx2; signx2 = -1; }
 		else signx2 = 1;
 		dy2 = (int)(y3 - y1);
 
@@ -574,10 +584,10 @@ public:
 
 		for (int i = 0; i < dx1;) {
 			t1xp = 0; t2xp = 0;
-			if (t1x<t2x) { minx = t1x; maxx = t2x; }
+			if (t1x < t2x) { minx = t1x; maxx = t2x; }
 			else { minx = t2x; maxx = t1x; }
 			// process first line until y value is about to change
-			while (i<dx1) {
+			while (i < dx1) {
 				i++;
 				e1 += dy1;
 				while (e1 >= dx1) {
@@ -602,8 +612,8 @@ public:
 				else              t2x += signx2;
 			}
 		next2:
-			if (minx>t1x) minx = t1x; if (minx>t2x) minx = t2x;
-			if (maxx<t1x) maxx = t1x; if (maxx<t2x) maxx = t2x;
+			if (minx > t1x) minx = t1x; if (minx > t2x) minx = t2x;
+			if (maxx < t1x) maxx = t1x; if (maxx < t2x) maxx = t2x;
 			drawline(minx, maxx, y);    // Draw line from min to max points found on the y
 										 // Now increase y
 			if (!changed1) t1x += signx1;
@@ -616,7 +626,7 @@ public:
 		}
 	next:
 		// Second half
-		dx1 = (int)(x3 - x2); if (dx1<0) { dx1 = -dx1; signx1 = -1; }
+		dx1 = (int)(x3 - x2); if (dx1 < 0) { dx1 = -dx1; signx1 = -1; }
 		else signx1 = 1;
 		dy1 = (int)(y3 - y2);
 		t1x = x2;
@@ -631,10 +641,10 @@ public:
 
 		for (int i = 0; i <= dx1; i++) {
 			t1xp = 0; t2xp = 0;
-			if (t1x<t2x) { minx = t1x; maxx = t2x; }
+			if (t1x < t2x) { minx = t1x; maxx = t2x; }
 			else { minx = t2x; maxx = t1x; }
 			// process first line until y value is about to change
-			while (i<dx1) {
+			while (i < dx1) {
 				e1 += dy1;
 				while (e1 >= dx1) {
 					e1 -= dx1;
@@ -643,7 +653,7 @@ public:
 				}
 				if (changed1) break;
 				else   	   	  t1x += signx1;
-				if (i<dx1) i++;
+				if (i < dx1) i++;
 			}
 		next3:
 			// process second line until y value is about to change
@@ -659,15 +669,15 @@ public:
 			}
 		next4:
 
-			if (minx>t1x) minx = t1x; if (minx>t2x) minx = t2x;
-			if (maxx<t1x) maxx = t1x; if (maxx<t2x) maxx = t2x;
-			drawline(minx, maxx, y);   										
+			if (minx > t1x) minx = t1x; if (minx > t2x) minx = t2x;
+			if (maxx < t1x) maxx = t1x; if (maxx < t2x) maxx = t2x;
+			drawline(minx, maxx, y);
 			if (!changed1) t1x += signx1;
 			t1x += t1xp;
 			if (!changed2) t2x += signx2;
 			t2x += t2xp;
 			y += 1;
-			if (y>y3) return;
+			if (y > y3) return;
 		}
 	}
 
@@ -719,7 +729,7 @@ public:
 		}
 	};
 
-	void DrawSprite(int x, int y, olcSprite *sprite)
+	void DrawSprite(int x, int y, olcSprite* sprite)
 	{
 		if (sprite == nullptr)
 			return;
@@ -734,7 +744,7 @@ public:
 		}
 	}
 
-	void DrawPartialSprite(int x, int y, olcSprite *sprite, int ox, int oy, int w, int h)
+	void DrawPartialSprite(int x, int y, olcSprite* sprite, int ox, int oy, int w, int h)
 	{
 		if (sprite == nullptr)
 			return;
@@ -743,13 +753,13 @@ public:
 		{
 			for (int j = 0; j < h; j++)
 			{
-				if (sprite->GetGlyph(i+ox, j+oy) != L' ')
-					Draw(x + i, y + j, sprite->GetGlyph(i+ox, j+oy), sprite->GetColour(i+ox, j+oy));
+				if (sprite->GetGlyph(i + ox, j + oy) != L' ')
+					Draw(x + i, y + j, sprite->GetGlyph(i + ox, j + oy), sprite->GetColour(i + ox, j + oy));
 			}
 		}
 	}
 
-	void DrawWireFrameModel(const std::vector<std::pair<float, float>> &vecModelCoordinates, float x, float y, float r = 0.0f, float s = 1.0f, short col = FG_WHITE, short c = PIXEL_SOLID)
+	void DrawWireFrameModel(const std::vector<std::pair<float, float>>& vecModelCoordinates, float x, float y, float r = 0.0f, float s = 1.0f, short col = FG_WHITE, short c = PIXEL_SOLID)
 	{
 		// pair.first = x coordinate
 		// pair.second = y coordinate
@@ -797,7 +807,7 @@ public:
 
 public:
 	void Start()
-	{	
+	{
 		// Start the thread
 		m_bAtomActive = true;
 		std::thread t = std::thread(&olcConsoleGameEngine::GameThread, this);
@@ -811,7 +821,7 @@ public:
 		return m_nScreenWidth;
 	}
 
-	int ScreenHeight() 
+	int ScreenHeight()
 	{
 		return m_nScreenHeight;
 	}
@@ -820,7 +830,7 @@ private:
 	void GameThread()
 	{
 		// Create user resources as part of this thread
-		if (!OnUserCreate()) 
+		if (!OnUserCreate())
 			m_bAtomActive = false;
 
 		// Check if sound system should be enabled
@@ -979,11 +989,11 @@ private:
 
 public:
 	// User MUST OVERRIDE THESE!!
-	virtual bool OnUserCreate()							= 0;
-	virtual bool OnUserUpdate(float fElapsedTime)		= 0;	
+	virtual bool OnUserCreate() = 0;
+	virtual bool OnUserUpdate(float fElapsedTime) = 0;
 
 	// Optional for clean up 
-	virtual bool OnUserDestroy()						{ return true; }
+	virtual bool OnUserDestroy() { return true; }
 
 
 
@@ -1000,7 +1010,7 @@ protected: // Audio Engine =====================================================
 		olcAudioSample(std::wstring sWavFile)
 		{
 			// Load Wav file and convert to float format
-			FILE *f = nullptr;
+			FILE* f = nullptr;
 			_wfopen_s(&f, sWavFile.c_str(), L"rb");
 			if (f == nullptr)
 				return;
@@ -1041,11 +1051,11 @@ protected: // Audio Engine =====================================================
 			// Finally got to data, so read it all in and convert to float samples
 			nSamples = nChunksize / (wavHeader.nChannels * (wavHeader.wBitsPerSample >> 3));
 			nChannels = wavHeader.nChannels;
-			
+
 			// Create floating point buffer to hold audio sample
 			fSample = new float[nSamples * nChannels];
-			float *pSample = fSample;
-			
+			float* pSample = fSample;
+
 			// Read in audio data and normalise
 			for (long i = 0; i < nSamples; i++)
 			{
@@ -1064,12 +1074,12 @@ protected: // Audio Engine =====================================================
 		}
 
 		WAVEFORMATEX wavHeader;
-		float *fSample = nullptr;
+		float* fSample = nullptr;
 		long nSamples = 0;
 		int nChannels = 0;
 		bool bSampleValid = false;
 	};
-	
+
 	// This vector holds all loaded sound samples in memory
 	std::vector<olcAudioSample> vecAudioSamples;
 
@@ -1146,7 +1156,7 @@ protected: // Audio Engine =====================================================
 		// Open Device if valid
 		if (waveOutOpen(&m_hwDevice, WAVE_MAPPER, &waveFormat, (DWORD_PTR)waveOutProcWrap, (DWORD_PTR)this, CALLBACK_FUNCTION) != S_OK)
 			return DestroyAudio();
-		
+
 		// Allocate Wave|Block Memory
 		m_pBlockMemory = new short[m_nBlockCount * m_nBlockSamples];
 		if (m_pBlockMemory == nullptr)
@@ -1293,7 +1303,7 @@ protected: // Audio Engine =====================================================
 		// Accumulate sample for this channel
 		float fMixerSample = 0.0f;
 
-		for (auto &s : listActiveSamples)
+		for (auto& s : listActiveSamples)
 		{
 			// Calculate sample position
 			s.nSamplePosition += (long)((float)vecAudioSamples[s.nAudioSampleID - 1].wavHeader.nSamplesPerSec * fTimeStep);
@@ -1306,7 +1316,7 @@ protected: // Audio Engine =====================================================
 		}
 
 		// If sounds have completed then remove them
-		listActiveSamples.remove_if([](const sCurrentlyPlayingSample &s) {return s.bFinished; });
+		listActiveSamples.remove_if([](const sCurrentlyPlayingSample& s) {return s.bFinished; });
 
 		// The users application might be generating sound, so grab that if it exists
 		fMixerSample += onUserSoundSample(nChannel, fGlobalTime, fTimeStep);
@@ -1322,7 +1332,7 @@ protected: // Audio Engine =====================================================
 	unsigned int m_nBlockCurrent;
 
 	short* m_pBlockMemory = nullptr;
-	WAVEHDR *m_pWaveHeaders = nullptr;
+	WAVEHDR* m_pWaveHeaders = nullptr;
 	HWAVEOUT m_hwDevice = nullptr;
 
 	std::thread m_AudioThread;
@@ -1332,10 +1342,10 @@ protected: // Audio Engine =====================================================
 	std::mutex m_muxBlockNotZero;
 	std::atomic<float> m_fGlobalTime = 0.0f;
 
-	
+
 
 protected:
-	
+
 
 	struct sKeyState
 	{
@@ -1348,7 +1358,7 @@ protected:
 	int m_mousePosY;
 
 public:
-	sKeyState GetKey(int nKeyID){ return m_keys[nKeyID]; }
+	sKeyState GetKey(int nKeyID) { return m_keys[nKeyID]; }
 	int GetMouseX() { return m_mousePosX; }
 	int GetMouseY() { return m_mousePosY; }
 	sKeyState GetMouse(int nMouseButtonID) { return m_mouse[nMouseButtonID]; }
@@ -1356,7 +1366,7 @@ public:
 
 
 protected:
-	int Error(const wchar_t *msg)
+	int Error(const wchar_t* msg)
 	{
 		wchar_t buf[256];
 		FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, GetLastError(), MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), buf, 256, NULL);
@@ -1384,7 +1394,7 @@ protected:
 protected:
 	int m_nScreenWidth;
 	int m_nScreenHeight;
-	CHAR_INFO *m_bufScreen;
+	CHAR_INFO* m_bufScreen;
 	std::wstring m_sAppName;
 	HANDLE m_hOriginalConsole;
 	CONSOLE_SCREEN_BUFFER_INFO m_OriginalConsoleInfo;
@@ -1395,7 +1405,7 @@ protected:
 	short m_keyNewState[256] = { 0 };
 	bool m_mouseOldState[5] = { 0 };
 	bool m_mouseNewState[5] = { 0 };
-	bool m_bConsoleInFocus = true;	
+	bool m_bConsoleInFocus = true;
 	bool m_bEnableSound = false;
 
 	// These need to be static because of the OnDestroy call the OS may make. The OS
@@ -1406,6 +1416,6 @@ protected:
 };
 
 // Define our static variables
-std::atomic<bool> olcConsoleGameEngine::m_bAtomActive(false);
-std::condition_variable olcConsoleGameEngine::m_cvGameFinished;
-std::mutex olcConsoleGameEngine::m_muxGame;
+//std::atomic<bool> olcConsoleGameEngine::m_bAtomActive(false);
+//std::condition_variable olcConsoleGameEngine::m_cvGameFinished;
+//std::mutex olcConsoleGameEngine::m_muxGame;
