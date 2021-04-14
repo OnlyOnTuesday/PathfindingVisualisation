@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(){
-    cout << "SUCCESS" << endl;
+    cout << "SUCCESS: redirected to sample.exe" << endl;
 
     return 0;
 }
