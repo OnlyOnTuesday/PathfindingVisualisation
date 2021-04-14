@@ -5,6 +5,7 @@
 
 ## Meeting Times: 
  - Tuesdays 6:00pm
+ - Wednesdays 8:30pm
  - Saturdays 3:00pm
 
 ## Team Members:
@@ -12,6 +13,7 @@
  - Ethan Flynn
  - Fadi Alrabadi
  - Ryan Conaway
+ - Alex Williams
 
 <<<<<<< HEAD
 ## A description of the intended project:
