@@ -15,14 +15,11 @@
  - Ryan Conaway
  - Alex Williams
 
-<<<<<<< HEAD
 ## A description of the intended project:
  - An application that generates mazes and solves them; a visualization of pathfinding algorithms.
 
-<<<<<<< HEAD
 ## Link to the github repo:
 =======
-<<<<<<< HEAD
 Github Repo: https://github.com/OnlyOnTuesday/PathfindingVisualisation
 =======
 ## A description of the intended project
