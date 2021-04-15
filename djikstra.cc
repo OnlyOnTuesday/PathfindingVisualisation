@@ -1,6 +1,8 @@
 #include <iostream>
-#include <limits>
+#include <limits>  // for numeric_limits<int>::max
+#include <utility> //for pair
 #include <vector>
+#include <stack>
 using namespace std;
 
 /* TODO:
@@ -14,96 +16,116 @@ using namespace std;
  * update convertMatrix to not assume a square matrix is being used
  */
 
-void shortestPath(vector<vector<int>> distances, int vertex, int numCities);
+void shortestPath(vector<vector<int>> distances, vector<int> preds, int vertex,
+                  int size);
 
-void convertMatrix(vector<vector<int>> &mazeVect,
-                   vector<vector<int>> &distances);
+void convertMatrix(vector<int> &mazeVect, vector<vector<int>> &distances);
+
+void dijkstra(vector<int> mazeVector, pair<int, int> coordinates);
 
 int main() {
   // test main for algorithm development
 
-  vector<vector<int>> test = {{1, 0, 0}, {1, 1, 1}, {1, 0, 1}};
-  vector<vector<int>> result(3, vector<int>(3, 0));
-
-  for (int i = 0; i < test.size(); i++) {
-    for (int j = 0; j < test.size(); j++) {
-      cout << test.at(i).at(j) << " ";
-    }
-    cout << endl;
-  }
-  cout << endl;
-
-  for (int i = 0; i < result.size(); i++) {
-    for (int j = 0; j < result.size(); j++) {
-      cout << result.at(i).at(j) << " ";
-    }
-    cout << endl;
-  }
-  cout << endl;
-
-  convertMatrix(test, result);
-
-  for (int i = 0; i < result.size(); i++) {
-    for (int j = 0; j < result.size(); j++) {
-      cout << result.at(i).at(j) << " ";
-    }
-    cout << endl;
-  }
-  cout << endl;
+  vector<int> maze = {1, 0, 1, 1, 1, 1, 0, 1, 0};
+  pair<int, int> coord(0, 0);
+  dijkstra(maze, coord);
 
   cout << "HELLO WORLD" << endl;
   return 0;
 }
 
-void shortestPath(vector<vector<int>> mazeVector, int vertex, int numCities) {
-  /* Things that need to change
-   * numCities name will change and will be defined locally
-   *   will use the dimension of one vector/row to determine
-   * a parameter specifying the vertex will probably replace numCities
-   * mazeVector needs to be converted to a proper distances function
-   * condition in the first inner for-loop needs to be changed
-   * maybe change names of a few other variable to be more context-relevant
+void dijkstra(vector<int> mazeVector, pair<int, int> coordinates) {
+  /* Strategy
+   * find dimensions of the mazeVector
+   *  use size of outside vector for x dimension
+   *  use size of nested vector for y dimension
+   * create empty array for predecessors
+   * call shortestPath with given parameters and new pair and matrix
+   *
+   * sort through the predecessors array to find the path using coordinates
+   *  use a stack to push the pairs
+   *  pop the pairs into an array which should be returned eventually (won't be
+   *  for now)
    */
 
-  /// convert the maze matrix to a distance matrix
-  vector<vector<int>> distances(numCities, vector<int>(numCities));
+  // pair<int, int> dimensions(mazeVector.size(), mazeVector[0].size());
+  int width = 3;
+  int height = 3;
+  int size = width * height;
+  vector<int> predecessors(size);
+
+  // create x*y by x*y size matrix, full of zeroes
+  vector<vector<int>> distances(size, vector<int>(size, 0));
   convertMatrix(mazeVector, distances);
 
-  /// arrays for the weights of each path and the predecessors of each node
-  /// weights will always be 1 in this version
-  int dists[numCities];
-  int preds[numCities];
+  // testing
+  cout << endl;
+  for (int i = 0; i < distances.size(); i++) {
+    for (int j = 0; j < distances.size(); j++) {
+      cout << distances[i][j] << " ";
+    }
+    cout << endl;
+  }
+  cout << endl;
 
-  /// fill dists with weights from vertex to any other node
-  for (int i = 0; i < numCities; i++) {
+  // not trusting compiler init
+  for (int i = 0; i < size; i++) {
+    predecessors[i] = 0;
+  }
+
+  // testing
+  for (int i = 0; i < size; i++) {
+    cout << predecessors[i] << " ";
+  }
+  cout << endl;
+
+  cout << "entering" << endl;
+
+  int vertex = 0;
+  shortestPath(distances, predecessors, vertex, size);
+
+  cout << "exiting" << endl;
+
+  int pred = size - 1;
+  stack<int> path;
+  while (pred != 0){
+    path.push(mazeVector[pred]);
+  }
+
+  while(path.size() != 0){
+    int c = path.top();
+    cout << c << " ";
+    path.pop();
+  }
+
+}
+
+void shortestPath(vector<vector<int>> distances, vector<int> preds, int vertex,
+                  int size) {
+
+  int dists[size];
+  for (int i = 0; i < size; i++) {
     dists[i] = distances[vertex][i];
   }
 
-  /// array used to know if the distance between any node and the vertex has
-  /// been determined
   bool *distFound;
-  distFound = new bool[numCities];
+  distFound = new bool[size];
 
-  for (int i = 0; i < numCities; i++) {
+  for (int i = 0; i < size; i++) {
     distFound[i] = false;
   }
 
-  // at start, only the vertex info is known
   distFound[vertex] = true;
   dists[vertex] = 0;
   preds[vertex] = 0;
 
-  /// the heart of the algorithm
-  for (int i = 0; i < numCities; i++) {
-    // https://stackoverflow.com/questions/23278930/what-is-dbl-max-in-c
+  for (int i = 0; i < size; i++) {
     int smallestDist = numeric_limits<int>::max();
     int currentSmallest;
 
-    /// find the smallest distance
-    for (int j = 0; j < numCities; j++) {
+    for (int j = 0; j < size; j++) {
       if (!distFound[j]) {
-        // should probably make this condition > 0, not != 0
-        if (dists[j] < smallestDist && dists[j] != 0) {
+        if (dists[j] < smallestDist && dists[j] > 0) {
           currentSmallest = j;
           smallestDist = dists[currentSmallest];
         }
@@ -112,45 +134,137 @@ void shortestPath(vector<vector<int>> mazeVector, int vertex, int numCities) {
 
     distFound[currentSmallest] = true;
 
-    /// update neighbors
-    for (int j = 0; j < numCities; j++) {
+    for (int j = 0; j < size; j++) {
       if (!distFound[j]) {
-        // Make sure neighbors are updated, even if they have a distance of 0
         if ((smallestDist + distances[currentSmallest][j] < dists[j] &&
-             distances[currentSmallest][j] != 0) ||
-            (dists[j] == 0 && distances[currentSmallest][j] != 0)) {
+             distances[currentSmallest][j] > 0) ||
+            (dists[j] == 0 && distances[currentSmallest][j] > 0)) {
           dists[j] = smallestDist + distances[currentSmallest][j];
           preds[j] = currentSmallest;
         }
       }
     }
   }
-} // end function shortestPath
+}
 
-void convertMatrix(vector<vector<int>> &mazeVect,
-                   vector<vector<int>> &distances) {
-  /* Strategy
-   * if the value of mazeVect is 0, make it -1;
-   * if the value of mazeVect is 1, make it 0
-   *   only keep it 1 if it's an immediate neighbor of the vertex
-   */
+void convertMatrix(vector<int> &mazeVect, vector<vector<int>> &distances) {
+  // temporary 1d array
+  vector<int> temp(81);
 
-  /// iterate through nested vectors and make proper conversions
-  for (int i = 0; i < mazeVect.size(); i++) {
-    for (int j = 0; j < mazeVect.size(); j++) {
-      switch (mazeVect[i][j]) {
-      case 0:
-        distances[i][j] = -1;
-        break;
-      case 1:
-        // assume that vertex is (0,0) for now
-        if ((i == 0 && j == 1) || (i == 1 && j == 0) || (i == 0 && j == 0)) {
-          distances[i][j] = 1;
+  // go through 1d mazeVect and create adjacency matrix in temp
+  for (int x = 0; x < 9; x++) {
+    int i;
+    for (int y = 0; y < 9; y++) {
+      if (y >= 6) {
+        i = 2;
+      } else if (y >= 3 && y < 6) {
+        i = 1;
+      } else {
+        i = 0;
+      }
+
+      int j = y % 3;
+      int loc = y + x * 9;
+      int tempLoc = j + i * 3;
+
+      if (x == y) {
+        // can't have a path to self
+        temp[loc] = 0;
+      } else {
+
+        if (mazeVect[tempLoc] == 1) {
+          if ((x - 3 == tempLoc) || (x + 3 == tempLoc) ||
+              (x - 1 == tempLoc && tempLoc % 3 != 2) ||
+              (x + 1 == tempLoc && tempLoc % 3 != 0)) {
+            // two nodes are next to each other and have a path to each other
+            temp[loc] = 1;
+          }
         } else {
-          distances[i][j] = 0;
+          // edge goes from path to a wall (doesn't work when going from wall to
+          // path)
+          temp[loc] = -1;
         }
-        break;
-      } // end switch statement
-    }   // end for j < mazeVect.size() loop
-  }     // end for i < mazeVect.size() loop
-} // end of function convertMatrix()
+      }
+
+    } // end for y < 9
+  }   // end for x < 9
+
+  // put temp into two dimensional distances
+  for (int i = 0; i < 9; i++) {
+    for (int j = 0; j < 9; j++) {
+      int loc = j + i * 9;
+      distances[i][j] = temp[loc];
+    }
+  }
+} // end function convertMatrix
+
+// void shortestPath(vector<vector<int>> distances, vector<pair<int, int>>
+// preds;
+//                   int vertex, int numCities) {
+//   /* Things that need to change
+//    * numCities name will change and will be defined locally
+//    *   will use the dimension of one vector/row to determine
+//    * a parameter specifying the vertex will probably replace numCities
+//    * mazeVector needs to be converted to a proper distances function
+//    * condition in the first inner for-loop needs to be changed
+//    * maybe change names of a few other variable to be more context-relevant\
+//    * predecessors needs to use coordinates
+//    */
+
+//   /// arrays for the weights of each path and the predecessors of each node
+//   /// weights will always be 1 in this version
+//   int dists[numCities];
+
+//   /// fill dists with weights from vertex to any other node
+//   for (int i = 0; i < numCities; i++) {
+//     dists[i] = distances[vertex][i];
+//   }
+
+//   /// array used to know if the distance between any node and the vertex has
+//   /// been determined
+//   bool *distFound;
+//   distFound = new bool[numCities];
+
+//   for (int i = 0; i < numCities; i++) {
+//     distFound[i] = false;
+//   }
+
+//   // at start, only the vertex info is known
+//   distFound[vertex] = true;
+//   dists[vertex] = 0;
+//   preds[vertex].first = 0;
+//   preds[vertex].second = 0;
+
+//   /// the heart of the algorithm
+//   for (int i = 0; i < numCities; i++) {
+//     // https://stackoverflow.com/questions/23278930/what-is-dbl-max-in-c
+//     int smallestDist = numeric_limits<int>::max();
+//     int currentSmallest;
+
+//     /// find the smallest distance
+//     for (int j = 0; j < numCities; j++) {
+//       if (!distFound[j]) {
+//         // should probably make this condition > 0, not != 0
+//         if (dists[j] < smallestDist && dists[j] != 0) {
+//           currentSmallest = j;
+//           smallestDist = dists[currentSmallest];
+//         }
+//       }
+//     }
+
+//     distFound[currentSmallest] = true;
+
+//     /// update neighbors
+//     for (int j = 0; j < numCities; j++) {
+//       if (!distFound[j]) {
+//         // Make sure neighbors are updated, even if they have a distance of 0
+//         if ((smallestDist + distances[currentSmallest][j] < dists[j] &&
+//              distances[currentSmallest][j] != 0) ||
+//             (dists[j] == 0 && distances[currentSmallest][j] != 0)) {
+//           dists[j] = smallestDist + distances[currentSmallest][j];
+//           preds[j] = currentSmallest;
+//         }
+//       }
+//     }
+//   }
+// } // end function shortestPath
