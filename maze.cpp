@@ -35,7 +35,7 @@ bool Maze::OnUserCreate()
 
 	m_nPathWidth = 3;
 
-	//srand(time(0));
+	srand(time(0));
 	mazeSolved = false;
 	differenceTimer = -1; // intilize difference timer
 	algCalls = 0;
